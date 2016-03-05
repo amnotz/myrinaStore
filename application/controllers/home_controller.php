@@ -5,6 +5,7 @@ class home_controller extends CI_Controller {
  function __construct()
  {
    parent:: __construct();
+   $this->load->library("session");
  }
 
  function index()
@@ -13,12 +14,15 @@ class home_controller extends CI_Controller {
    {
      $session_data = $this->session->userdata('logged_in');
      $data['username'] = $session_data['username'];
+     if ($this->session->userdata("logged_in") ["usertype"]=="admin") {
+       $this->load->view('tranfer', $data);
+     }
      $this->load->view('MainOrder', $data);
    }
    else
    {
      //If no session, redirect to login page
-   	$this->load->view('login');
+    $this->load->view('login');
      // redirect('login', 'refresh');
 
    }

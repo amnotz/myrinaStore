@@ -9,8 +9,8 @@ class login_con extends CI_Controller {
  function index()
  {
    $this->load->helper(array('form'));
-   // $this->load->view('login');
-   $this->load->view('home');
+   $this->load->view('login');
+   // $this->load->view('home');
  }
 
 }

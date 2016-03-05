@@ -16,8 +16,8 @@ class VerifyLogin extends CI_Controller {
 
    $this->form_validation->set_rules('username', 'Username', 'trim|required');
    $this->form_validation->set_rules('password', 'Password', 'trim|required|callback_check_database');
-   echo $this->input->post("username");
-    echo $this->input->post("password");
+   // echo $this->input->post("username");
+   //  echo $this->input->post("password");
 
 
    if($this->form_validation->run() == FALSE)
@@ -28,18 +28,20 @@ class VerifyLogin extends CI_Controller {
    else
    {
      //Go to private area
+    // $this->load->view('testsession');
      redirect('home_controller', 'refresh');
    }
 
- }
+ }  
 
  function check_database($password)
  {
+  $usertype=null;
    //Field validation succeeded.  Validate against database
    $username = $this->input->post('username');
 
    //query the database
-   $result = $this->user->login($username, $password);
+   $result = $this->user->login($username, $password, $usertype);
 
 
    if($result)
@@ -49,7 +51,8 @@ class VerifyLogin extends CI_Controller {
      {
        $sess_array = array(
          'id' => $row->id,
-         'username' => $row->username
+         'username' => $row->username,
+         'usertype' =>$row->usertype
          
          
        );

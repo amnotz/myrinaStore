@@ -1,13 +1,14 @@
 <?php
 Class User extends CI_Model
 {
- function login($username, $password)
+ function login($username, $password, $usertype)
  {
    $this -> db -> select('*');
    $this -> db -> from('member');
    $this -> db -> where('username', $username);
    $this -> db -> where('password', MD5($password));
-   $this -> db -> limit(1);
+   
+   $this -> db -> limit(1); 
 
    $query = $this -> db -> get();
 
