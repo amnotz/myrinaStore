@@ -17,7 +17,9 @@ class home_controller extends CI_Controller {
      if ($this->session->userdata("logged_in") ["usertype"]=="admin") {
        $this->load->view('tranfer', $data);
      }
+     else{
      $this->load->view('MainOrder', $data);
+   }
    }
    else
    {
