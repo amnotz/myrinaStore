@@ -50,7 +50,7 @@ class VerifyLogin extends CI_Controller {
      foreach($result as $row)
      {
        $sess_array = array(
-         'id' => $row->id,
+         'memberID' => $row->memberID,
          'username' => $row->username,
          'usertype' =>$row->usertype
          
